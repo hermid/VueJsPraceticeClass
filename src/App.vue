@@ -11,14 +11,14 @@
       <!-- The entered class should be added to the below paragraph -->
       <input type="text" v-model="user_input" />
       <!-- (available classes: "user1", "user2") -->
-      <p :class="usser">Style me!</p>
+      <p :class="p1Style">Style me!</p>
       <button @click="toogleBtn()">Toggle Paragraph</button>
       <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
       <!-- Clicking the button should toggle between the two options -->
 
       <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
-      <input type="text" />
-      <p>Style me inline!</p>
+      <input type="text" v-model="user_input2" />
+      <p :style="{ background: p2Style }">Style me inline!</p>
     </section>
   </div>
 </template>
@@ -30,6 +30,8 @@ export default {
     return {
       user_input: "",
       user_input1_filled: false,
+      user_input2: "",
+      user_input2_filled: false,
       show_p1: true,
     };
   },
@@ -39,14 +41,22 @@ export default {
     },
   },
   computed: {
-    usser() {
+    p1Style() {
       return this.user_input1_filled ? this.user_input : "";
+    },
+    p2Style() {
+      return this.user_input2_filled ? this.user_input2 : "";
     },
   },
   watch: {
     user_input() {
       if (this.user_input !== "") {
         this.user_input1_filled = true;
+      }
+    },
+    user_input2() {
+      if (this.user_input2 !== "") {
+        this.user_input2_filled = true;
       }
     },
   },
