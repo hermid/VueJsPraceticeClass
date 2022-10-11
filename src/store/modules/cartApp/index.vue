@@ -2,25 +2,28 @@
   <main>
     <section class="items">
       <h4>Pick your items</h4>
-      <div v-for="product in products" :key="product">
+      <div class="product" v-for="product in products" :key="product.name">
         <div class="photo">
           <img :src="product.photo" />
         </div>
         <div class="description">
           <span class="name">{{ product.name }}</span>
-          <span class="price">$ {{ product.price }}</span>
+          <span class="price">₦ {{ product.price }}</span>
           <div class="quantity-area">
-            <template v-if="product.active">
-              <button>-</button>
+            <span>
+              <button class="btn bg-secondary text-warning">-</button>
               <span class="quantity">{{ product.quantity }}</span>
-              <button>+</button>
-            </template>
+              <button class="btn bg-secondary text-warning">+</button>
+            </span>
           </div>
         </div>
       </div>
     </section>
   </main>
 </template>
+
+
+
 
 
 <script>
@@ -35,6 +38,9 @@ export default {
   },
 };
 </script>
+
+
+
 
 
 <style>
@@ -68,7 +74,7 @@ main > section.items {
 
 section.items .product {
   border: 1px solid lightgrey;
-  margin: 50px;
+  margin: 7px;
   flex: 0 0 calc(33.333% - 24px);
   cursor: pointer;
   text-align: center;
@@ -79,7 +85,8 @@ section.items .product.selected {
 }
 
 section.items .photo img {
-  max-width: 150px;
+  margin-top: 10px;
+  max-width: 90px;
 }
 
 section.items .description {
