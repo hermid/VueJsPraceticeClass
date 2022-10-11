@@ -44,14 +44,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1x Big Mac</td>
-            <td>5.99</td>
+          <tr v-for="(product, index) in products" :key="index">
+            <template v-if="product.active">
+              <td>
+                {{ product.quantity + " x " + product.name }}
+              </td>
+              <td>
+                {{ product.quantity * product.price }}
+              </td>
+            </template>
           </tr>
 
           <tr>
             <th>Total</th>
-            <th>5.99</th>
+            <th>0.00</th>
           </tr>
         </tbody>
       </table>
@@ -81,7 +87,7 @@ export default {
     decrese_product_quantity(id) {
       var item = this.products[id];
 
-      if (item.quantity > 0) {
+      if (item.quantity > 1) {
         item.quantity -= 1;
       }
     },
