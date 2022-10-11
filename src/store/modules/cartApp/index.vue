@@ -4,8 +4,8 @@
       <h4>Pick your items</h4>
       <div
         class="product"
-        v-for="product in products"
-        :key="product.name"
+        v-for="(product, index) in products"
+        :key="index"
         @click="product.active = !product.active"
         :class="{ selected: product.active }"
       >
@@ -15,12 +15,20 @@
         <div class="description">
           <span class="name">{{ product.name }}</span>
           <span class="price">₦ {{ product.price }}</span>
-          <div class="quantity-area">
-            <span>
-              <button class="btn bg-secondary text-warning">-</button>
-              <span class="quantity">{{ product.quantity }}</span>
-              <button class="btn bg-secondary text-warning">+</button>
-            </span>
+          <div class="quantity-area" v-if="product.active">
+            <button
+              @click.stop="decrese_product_quantity(index)"
+              class="btn bg-secondary text-warning"
+            >
+              -
+            </button>
+            <span class="quantity">{{ product.quantity }}</span>
+            <button
+              @click.stop="increse_product_quantity(index)"
+              class="btn bg-secondary text-warning"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
@@ -64,6 +72,19 @@ export default {
     return {
       products: products_list,
     };
+  },
+  methods: {
+    increse_product_quantity(id) {
+      var item = this.products[id];
+      item.quantity++;
+    },
+    decrese_product_quantity(id) {
+      var item = this.products[id];
+
+      if (item.quantity > 0) {
+        item.quantity -= 1;
+      }
+    },
   },
 };
 </script>
