@@ -1,0 +1,65 @@
+[
+  {
+    "photo": "https://assets.stickpng.com/images/5882482de81acb96424ffaac.png",
+    "name": "Big Mac",
+    "price": 5.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://media1.popsugar-assets.com/files/thumbor/IrFhWNeECLcKmd3bmvi1u8fKZWA/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/06/02/813/n/1922195/b5480bde80f41b85_hero-pdt-ChickenBigMac_0.png",
+    "name": "Mc Chicken",
+    "price": 4.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://res.cloudinary.com/sonic-drive-in/image/upload/c_fit,w_600,h_600,dpr_2,f_auto,q_auto/v1621250831/oa_menu/products/menuproduct_burger_double-cheeseburger_sauce.png",
+    "name": "Double Cheese Burger",
+    "price": 2.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/French_Fries.png",
+    "name": "Fries",
+    "price": 2.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://cdn.winsightmedia.com/platform/files/public/2021-01/background/spicy-chicken-nuggets_1611683737.png?VersionId=9MiO7.Ovwn2gOwCQM5gfaDz0QX0dCM.6",
+    "name": "Mc Nuggets",
+    "price": 3.49,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://www.pngall.com/wp-content/uploads/2016/05/Salad-PNG.png",
+    "name": "Salad",
+    "price": 2.79,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://img.cppng.com/download/2020-06/1-2-coca-cola-png-clipart.png",
+    "name": "Coke",
+    "price": 1.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://www.lipton.com/content/dam/unilever/lipton_international/new_zealand/pack_shot/9310021039035-1128839-png.png",
+    "name": "Ice Tea",
+    "price": 1.99,
+    "active": false,
+    "quantity": 1
+  },
+  {
+    "photo": "https://arusimgroceries.com/wp-content/uploads/2020/09/Eva-table-water-75cl-80.jpg",
+    "name": "Water",
+    "price": 1.49,
+    "active": false,
+    "quantity": 1
+  }
+]
