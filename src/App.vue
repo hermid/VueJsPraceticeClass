@@ -4,7 +4,7 @@
       <h2 class="text-bold text-white">Vue Project</h2>
     </center>
 
-    <cart_app> </cart_app>
+    <form_app> </form_app>
   </div>
 </template>
 
@@ -12,12 +12,12 @@
 
 
 <script>
-import cart_app from "./store/modules/cartApp/index";
+import form_app from "./store/modules/formInput/index";
 
 export default {
   name: "App",
   components: {
-    cart_app,
+    form_app,
   },
 };
 </script>
