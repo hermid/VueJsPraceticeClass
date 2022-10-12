@@ -4,7 +4,7 @@
       <h2 class="text-bold text-white">Vue Project</h2>
     </center>
 
-    <form_app> </form_app>
+    <todo_app> </todo_app>
   </div>
 </template>
 
@@ -12,12 +12,12 @@
 
 
 <script>
-import form_app from "./store/modules/formInput/index";
+import todo_app from "./store/modules/todoApp/index";
 
 export default {
   name: "App",
   components: {
-    form_app,
+    todo_app,
   },
 };
 </script>
