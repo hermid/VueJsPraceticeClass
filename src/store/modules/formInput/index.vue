@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="member in members">
+        <tr v-for="(member, index) in members" :key="index">
           <td>{{ member.fname }}</td>
           <td>{{ member.lname }}</td>
           <td>{{ member.instrument }}</td>
@@ -23,20 +23,34 @@
       <p>Add more band members</p>
       <form>
         <label for="fname">First name:</label><br />
-        <input type="text" id="fname" name="fname" /><br />
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          v-model="newMember.fname"
+        /><br />
 
         <label for="lname">Last name:</label><br />
-        <input type="text" id="lname" name="lname" /><br />
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          v-model="newMember.lname"
+        /><br />
 
         <label for="instrument">Instrument:</label><br />
-        <select name="instrument" id="instrument">
+        <select
+          name="instrument"
+          id="instrument"
+          v-model="newMember.instrument"
+        >
           <option value="Bass">Bass</option>
           <option value="Electric Guitar">Electric Guitar</option>
           <option value="Acoustic Guitar">Acoustic Guitar</option>
           <option value="Drums">Drums</option>
         </select>
         <br /><br />
-        <input type="button" value="Add" />
+        <input @click="addNewMember" type="button" value="Add" />
       </form>
     </section>
   </main>
@@ -52,7 +66,22 @@ export default {
   data: function () {
     return {
       members: members_list,
+      newMember: {},
     };
+  },
+  methods: {
+    addNewMember() {
+      if (
+        this.newMember.fname &&
+        this.newMember.lname &&
+        this.newMember.instrument
+      ) {
+        this.members.push(this.newMember);
+        this.newMember = {};
+      } else {
+        alert("all fields required");
+      }
+    },
   },
 };
 </script>
