@@ -34,7 +34,7 @@
       </div>
     </section>
 
-    <section class="summary">
+    <section class="summary" v-if="total() > 0">
       <strong>Order Details</strong>
       <table>
         <thead>
@@ -47,17 +47,17 @@
           <tr v-for="(product, index) in products" :key="index">
             <template v-if="product.active">
               <td>
-                {{ product.quantity + " x " + product.name }}
+                {{ product.quantity + "x " + product.name }}
               </td>
               <td>
-                {{ product.quantity * product.price }}
+                {{ (product.quantity * product.price).toFixed(2) }}
               </td>
             </template>
           </tr>
 
           <tr>
             <th>Total</th>
-            <th>0.00</th>
+            <th>{{ total() }}</th>
           </tr>
         </tbody>
       </table>
@@ -90,6 +90,17 @@ export default {
       if (item.quantity > 1) {
         item.quantity -= 1;
       }
+    },
+    total() {
+      var total_cost = 0;
+
+      this.products.forEach((item) => {
+        if (item.active) {
+          total_cost += item.price * item.quantity;
+        }
+      });
+
+      return total_cost.toFixed(2);
     },
   },
 };
