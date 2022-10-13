@@ -1,24 +1,23 @@
 <template>
   <main id="app">
     <section class="todo-list">
+      <input v-model="userInput" type="text" placeholder="Add new to-do" />
+      <button @click="addTask" class="add">Add</button>
+
       <h3>To-do List</h3>
 
       <div class="all-todos">
-        <div class="single-todo done">
-          <p>Learn HTML, CSS and Javascript</p>
-        </div>
-        <div class="single-todo done">
-          <p>Learn the basics of Vue JS</p>
-        </div>
-        <div class="single-todo">
-          <p>Complete Vue JS Challenge with excellence</p>
+        <div
+          class="single-todo"
+          :class="{ done: task.completed }"
+          v-for="(task, index) in tasks"
+          :key="index"
+        >
+          <p @click="markAsCompleted(index)">{{ task.title }}</p>
         </div>
       </div>
 
-      <button class="clear">Clear All</button>
-
-      <input type="text" placeholder="Add new to-do" />
-      <button class="add">Add</button>
+      <button @click="clearAllTask" class="clear">Clear All</button>
 
       <div class="instructions">
         Instructions:
@@ -37,6 +36,25 @@
 <script>
 export default {
   name: "todo_app",
+  data: () => {
+    return {
+      tasks: [],
+      userInput: "",
+    };
+  },
+  methods: {
+    addTask() {
+      var entered_task = { title: this.userInput, completed: false };
+      this.tasks.push(entered_task);
+      this.userInput = "";
+    },
+    markAsCompleted(id) {
+      this.tasks[id].completed = !this.tasks[id].completed;
+    },
+    clearAllTask() {
+      this.tasks = [];
+    },
+  },
 };
 </script>
 
