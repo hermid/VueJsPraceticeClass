@@ -17,7 +17,9 @@
         </div>
       </div>
 
-      <button @click="clearAllTask" class="clear">Clear All</button>
+      <button @click="clearAllTask" class="clear" v-show="tasks.length">
+        Clear All
+      </button>
 
       <div class="instructions">
         Instructions:
@@ -47,6 +49,8 @@ export default {
       var entered_task = { title: this.userInput, completed: false };
       this.tasks.push(entered_task);
       this.userInput = "";
+
+      localStorage.setItem("save_tasks", JSON.stringify(this.tasks));
     },
     markAsCompleted(id) {
       this.tasks[id].completed = !this.tasks[id].completed;
@@ -54,6 +58,12 @@ export default {
     clearAllTask() {
       this.tasks = [];
     },
+  },
+  // vue lifecycle
+  created() {
+    this.tasks = localStorage.getItem("save_tasks")
+      ? JSON.parse(localStorage.getItem("save_tasks"))
+      : this.tasks;
   },
 };
 </script>
