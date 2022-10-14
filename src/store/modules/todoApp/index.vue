@@ -46,17 +46,26 @@ export default {
   },
   methods: {
     addTask() {
-      var entered_task = { title: this.userInput, completed: false };
-      this.tasks.push(entered_task);
-      this.userInput = "";
+      if (this.userInput !== "") {
+        var entered_task = { title: this.userInput, completed: false };
+        this.tasks.push(entered_task);
+        this.userInput = "";
 
-      localStorage.setItem("save_tasks", JSON.stringify(this.tasks));
+        this.storeToLocalStore();
+      } else {
+        alert("task cannot be empty");
+      }
     },
     markAsCompleted(id) {
       this.tasks[id].completed = !this.tasks[id].completed;
+      this.storeToLocalStore();
     },
     clearAllTask() {
       this.tasks = [];
+      this.storeToLocalStore();
+    },
+    storeToLocalStore() {
+      localStorage.setItem("save_tasks", JSON.stringify(this.tasks));
     },
   },
   // vue lifecycle
