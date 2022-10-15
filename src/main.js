@@ -6,6 +6,11 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 
+import axios from "axios";
+import VueAxios from "vue-axios";
+
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+app.mount("#app");
+app.use(VueAxios, axios);
