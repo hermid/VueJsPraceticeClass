@@ -4,7 +4,7 @@
       <h2 class="text-bold text-white">Vue Project</h2>
     </center>
 
-    <todo_app> </todo_app>
+    <quiz_app> </quiz_app>
   </div>
 </template>
 
@@ -12,12 +12,12 @@
 
 
 <script>
-import todo_app from "./store/modules/todoApp/index";
+import quiz_app from "./store/modules/quizGame/index";
 
 export default {
   name: "App",
   components: {
-    todo_app,
+    quiz_app,
   },
 };
 </script>
