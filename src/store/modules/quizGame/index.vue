@@ -1,27 +1,81 @@
 <template>
   <main id="app">
-    <h1>Quiz Game</h1>
-
     <section class="score">
       Player <span>0</span> x <span>0</span> Computer
     </section>
 
-    <input type="radio" name="options" value="answer" />
-    <label>True</label><br />
+    <template v-if="question">
+      <h1 class="fw-bold" v-html="question"></h1>
 
-    <input type="radio" name="options" value="answer" />
-    <label>False</label><br />
+      <template v-for="(ans, index) in answers" :key="index">
+        <input
+          type="radio"
+          name="options"
+          :value="ans"
+          v-model="chosenAnswer"
+        />
+        <label v-html="ans"></label>
 
-    <button class="send" type="button">Send</button>
+        <br />
+      </template>
+
+      <button @click="submitAnswer" class="send" type="button">Send</button>
+    </template>
   </main>
 </template>
 
 
 <script>
-const url = "https://opentdb.com/api.php?amount=1&category=9&difficulty=medium";
-
 export default {
   name: "quiz_app",
+  data: () => {
+    return {
+      question: undefined,
+      incorrectAnswers: undefined,
+      correctAnswer: undefined,
+      chosenAnswer: undefined,
+    };
+  },
+  methods: {
+    submitAnswer() {
+      if (!this.chosenAnswer) {
+        alert("you need to select an option");
+      } else {
+        if (this.chosenAnswer == this.correctAnswer) {
+          alert("you won");
+        } else {
+          alert("incorrect");
+        }
+      }
+    },
+  },
+  computed: {
+    answers() {
+      var shuffuled_answers = JSON.parse(JSON.stringify(this.incorrectAnswers));
+
+      var answers_array_length = shuffuled_answers.length + 1;
+      // without +1, last slot is ommited because incorrectAnswers will exclude the correct answer from it's array
+
+      var correct_answer_position = Math.round(
+        Math.random() * answers_array_length
+      );
+
+      shuffuled_answers.splice(correct_answer_position, 0, this.correctAnswer);
+
+      return shuffuled_answers;
+    },
+  },
+  created() {
+    this.axios.get("https://opentdb.com/api.php?amount=1").then((response) => {
+      const resp = response.data.results[0];
+
+      this.question = resp.question;
+      this.incorrectAnswers = resp.incorrect_answers;
+      this.correctAnswer = resp.correct_answer;
+
+      // console.log(response.data.results);
+    });
+  },
 };
 </script>
 
