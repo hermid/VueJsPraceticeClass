@@ -1,8 +1,6 @@
 <template>
   <main id="app">
-    <section class="score">
-      Player <span>0</span> x <span>0</span> Computer
-    </section>
+    <ScoreBoard :playerWinPoints="winCount" :playerLosePoints="loseCount" />
 
     <template v-if="question">
       <h1 class="fw-bold" v-html="question"></h1>
@@ -68,8 +66,13 @@
 
 
 <script>
+import ScoreBoard from "../../../components/ScoreBoard";
+
 export default {
   name: "quiz_app",
+  components: {
+    ScoreBoard,
+  },
   data: () => {
     return {
       question: undefined,
@@ -77,6 +80,8 @@ export default {
       correctAnswer: undefined,
       chosenAnswer: undefined,
       answerSubmitted: false,
+      winCount: 0,
+      loseCount: 0,
     };
   },
   methods: {
@@ -87,9 +92,9 @@ export default {
         this.answerSubmitted = true;
 
         if (this.chosenAnswer === this.correctAnswer) {
-          console.log("you won");
+          this.winCount++;
         } else {
-          console.log("incorrect");
+          this.loseCount++;
         }
       }
     },
